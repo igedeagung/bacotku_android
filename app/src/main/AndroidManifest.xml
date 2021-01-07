@@ -13,12 +13,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/bacot_icon"
+        android:label="BacotKu"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/bacot_icon"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FPPPB">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".StoreActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
