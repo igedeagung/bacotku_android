@@ -15,16 +15,16 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="205dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="523dp"
             android:background="@drawable/round_dash"
-            android:paddingLeft="65dp"
+            android:paddingLeft="85dp"
             android:paddingTop="20dp"
-            android:paddingRight="60dp"
+            android:paddingRight="85dp"
             android:paddingBottom="20dp"
-            android:text="Next"
+            android:text="NEXT"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textStyle="bold" />

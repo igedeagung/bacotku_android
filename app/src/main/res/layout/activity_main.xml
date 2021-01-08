@@ -47,7 +47,7 @@
         android:paddingTop="10dp"
         android:paddingRight="30dp"
         android:paddingBottom="10dp"
-        android:text="Bacotan Baru    "
+        android:text="Tambah Bacotan Baru   "
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
