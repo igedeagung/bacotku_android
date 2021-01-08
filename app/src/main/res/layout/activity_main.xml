@@ -12,7 +12,7 @@
         android:layout_width="371dp"
         android:layout_height="483dp"
         tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="235dp" />
+        tools:layout_editor_absoluteY="232dp" />
 
     <TextView
         android:id="@+id/textView"
@@ -39,20 +39,21 @@
 
     <Button
         android:id="@+id/add"
-        android:layout_width="317dp"
-        android:layout_height="64dp"
+        android:layout_width="310dp"
+        android:layout_height="40dp"
         android:background="@drawable/round_create_bct"
         android:drawableRight="@drawable/icon_plus"
         android:paddingLeft="30dp"
-        android:paddingTop="20dp"
+        android:paddingTop="10dp"
         android:paddingRight="30dp"
-        android:paddingBottom="20dp"
+        android:paddingBottom="10dp"
         android:text="Bacotan Baru    "
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.257" />
+        app:layout_constraintVertical_bias="0.253" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
