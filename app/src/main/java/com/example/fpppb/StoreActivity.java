@@ -398,11 +398,46 @@ public class StoreActivity extends AppCompatActivity {
     }
 
     private void submit(){
-        validate_photo();
-        validate_judul();
-        validate_isi();
-        validate_provinsi();
-        validate_kota();
+        if(file==null){
+            AlertDialog.Builder adb=new AlertDialog.Builder(StoreActivity.this);
+            adb.setTitle("Error");
+            adb.setMessage("Ambil Foto !");
+            adb.setPositiveButton("Ok", null);
+            adb.show();
+            return;
+        }
+        if(judul.getText().toString().equals("")){
+            judul.setError("Judul Harus Diisi !");
+            return;
+        }
+        if(isi.getText().toString().equals("")){
+            isi.setError("Isi Harus Diisi !");
+            return;
+        }
+        if(provinsi.getSelectedItem().toString().equals("Pilih Provinsi")){
+            AlertDialog.Builder adb=new AlertDialog.Builder(StoreActivity.this);
+            adb.setTitle("Error");
+            adb.setMessage("Pilih Provinsi ! ");
+            adb.setPositiveButton("Ok", null);
+            adb.show();
+            return;
+        }
+        if(kota.getSelectedItem().toString().equals("Pilih Provinsi Dulu")){
+            AlertDialog.Builder adb=new AlertDialog.Builder(StoreActivity.this);
+            adb.setTitle("Error");
+            adb.setMessage("Pilih Kota ! ");
+            adb.setPositiveButton("Ok", null);
+            adb.show();
+            return;
+        }
+        if(tanggal.getText().toString().equals("Pilih Tanggal Kejadian") || tanggal.getText().toString().equals("PILIH TANGGAL KEJADIANn")){
+            AlertDialog.Builder adb=new AlertDialog.Builder(StoreActivity.this);
+            adb.setTitle("Error");
+            adb.setMessage("Pilih Tanggal ! ");
+            adb.setPositiveButton("Ok", null);
+            adb.show();
+            return;
+        }
 
         MultipartBody.Part filePart = MultipartBody.Part.createFormData("photo", "temp.png", RequestBody.create(MediaType.parse("image/*"), file));
 
@@ -419,6 +454,7 @@ public class StoreActivity extends AppCompatActivity {
                 Log.d("Retrofit Get", "data Kontak: " +
                         String.valueOf(response));
                 Toast.makeText(StoreActivity.this, "Data Tersimpan", Toast.LENGTH_LONG).show();
+                finish();
             }
 
             @Override
@@ -427,23 +463,8 @@ public class StoreActivity extends AppCompatActivity {
                 Toast.makeText(StoreActivity.this, "Data Gagal Disimpan", Toast.LENGTH_LONG).show();
             }
         });
-    }
 
-    private void validate_kota() {
 
     }
 
-    private void validate_provinsi() {
-
-    }
-
-    private void validate_isi() {
-    }
-
-    private void validate_judul() {
-    }
-
-    private void validate_photo(){
-
-    }
 }
