@@ -3,6 +3,7 @@ package com.example.fpppb;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -16,6 +17,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -33,6 +36,7 @@ import com.example.fpppb.Model.Province;
 import com.example.fpppb.Model.Regencies;
 import com.example.fpppb.Rest.ApiClient;
 import com.example.fpppb.Rest.ApiInterface;
+import com.google.android.material.button.MaterialButton;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -56,7 +60,7 @@ public class StoreActivity extends AppCompatActivity {
     private ImageButton upload;
     private Button tanggal;
     private Calendar myCalendar;
-    private Spinner kota, provinsi;
+    private Spinner kota, provinsi, lokasi;
     private ApiInterface mApiInterface;
     private EditText judul, isi;
 
@@ -70,7 +74,7 @@ public class StoreActivity extends AppCompatActivity {
         Button submit=findViewById(R.id.submit);
         judul=findViewById(R.id.store_judul);
         isi=findViewById(R.id.store_isi);
-        Switch lokasi=findViewById(R.id.switch_lokasi);
+        lokasi=findViewById(R.id.switch_lokasi);
         kota=findViewById(R.id.store_kota);
         provinsi=findViewById(R.id.store_provinsi);
         myCalendar = Calendar.getInstance();
@@ -79,6 +83,23 @@ public class StoreActivity extends AppCompatActivity {
         tanggal.setOnClickListener(operasi);
         submit.setOnClickListener(operasi);
 
+        String[] lokasi_list=new String[]{"Lokasi Manual", "Lokasi Otomatis"};
+
+        getProvinsi();
+
+        provinsi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                gantiKota(provinsi.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+    private void getProvinsi(){
         mApiInterface= ApiClient.getClient().create(ApiInterface.class);
         Call<GetProvince> get=mApiInterface.getProvince();
         get.enqueue(new Callback<GetProvince>(){
@@ -105,21 +126,10 @@ public class StoreActivity extends AppCompatActivity {
                         String.valueOf(t));
             }
         });
-
-        provinsi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                gantiKota(provinsi.getSelectedItem().toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
     }
     View.OnClickListener operasi=new View.OnClickListener(){
 
+        @SuppressLint("NonConstantResourceId")
         @Override
         public void onClick(View view) {
             switch (view.getId()){
