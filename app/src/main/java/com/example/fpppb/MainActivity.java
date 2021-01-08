@@ -1,5 +1,6 @@
 package com.example.fpppb;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText edittext;
     private Calendar myCalendar;
     private BacotAdapter bAdapter;
+    private ListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView lv;
         Button add;
 
         lv=findViewById(R.id.lv);
@@ -84,4 +85,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }
