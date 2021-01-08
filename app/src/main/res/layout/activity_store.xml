@@ -50,7 +50,7 @@
 
         <Button
             android:id="@+id/tanggal"
-            android:layout_width="369dp"
+            android:layout_width="351dp"
             android:layout_height="41dp"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
@@ -66,7 +66,6 @@
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/uplaod" />
 
@@ -82,7 +81,8 @@
             android:inputType="textPersonName"
             android:textAlignment="viewStart"
             android:textColor="#FFFFFF"
-            android:textSize="24sp"
+            android:textColorHint="#ffffff"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,6 +100,7 @@
             android:hint="Apa yang sedang kamu pikir saat ini ...."
             android:inputType="textMultiLine"
             android:textColor="#FFFFFF"
+            android:textColorHint="#ffffff"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

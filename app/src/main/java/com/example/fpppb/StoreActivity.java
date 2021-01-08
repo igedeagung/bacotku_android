@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -24,6 +25,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -113,7 +115,7 @@ public class StoreActivity extends AppCompatActivity {
 
         String[] lokasi_list=new String[]{"Lokasi Manual", "Lokasi Otomatis"};
 
-        ArrayAdapter<String> adapter_lokasi = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, lokasi_list);
+        ArrayAdapter<String> adapter_lokasi = get_spinner_adapter(lokasi_list);
         lokasi.setAdapter(adapter_lokasi);
 
         getProvinsi();
@@ -144,6 +146,35 @@ public class StoreActivity extends AppCompatActivity {
         });
     }
 
+    public ArrayAdapter<String> get_spinner_adapter(String[] list){
+        return new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, list){
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                // TODO Auto-generated method stub
+
+                View view = super.getView(position, convertView, parent);
+
+                TextView text = (TextView)view.findViewById(android.R.id.text1);
+                text.setTextColor(Color.BLACK);
+
+                return view;
+
+            }
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                // TODO Auto-generated method stub
+
+                View view = super.getView(position, convertView, parent);
+
+                TextView text = (TextView)view.findViewById(android.R.id.text1);
+                text.setTextColor(Color.WHITE);
+
+                return view;
+
+            }
+        };
+    }
+
     private void getProvinsi(){
         mApiInterface= ApiClient.getClient().create(ApiInterface.class);
         Call<GetProvince> get=mApiInterface.getProvince();
@@ -159,9 +190,9 @@ public class StoreActivity extends AppCompatActivity {
                 where.toArray( provinsi_list );
                 String[] kota_list=new String[]{"Pilih Provinsi Dulu"};
 
-                ArrayAdapter<String> adapter_provinsi = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, provinsi_list);
+                ArrayAdapter<String> adapter_provinsi = get_spinner_adapter(provinsi_list);
                 provinsi.setAdapter(adapter_provinsi);
-                ArrayAdapter<String> adapter_kota = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, kota_list);
+                ArrayAdapter<String> adapter_kota = get_spinner_adapter(kota_list);
                 kota.setAdapter(adapter_kota);
             }
 
@@ -272,8 +303,8 @@ public class StoreActivity extends AppCompatActivity {
                     }
                     String[] kota_ganti = new String[where.size()];
                     where.toArray(kota_ganti);
-                    ArrayAdapter<String> adapter_kota = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, kota_ganti);
-                    kota.setAdapter(adapter_kota);
+                    ArrayAdapter<String> adapter_kota = get_spinner_adapter(kota_ganti);
+                kota.setAdapter(adapter_kota);
             }
 
 
@@ -334,9 +365,9 @@ public class StoreActivity extends AppCompatActivity {
                 Toast.makeText(StoreActivity.this, Arrays.toString(provinsi_alamat), Toast.LENGTH_LONG);
                 Log.e("loc Get", "ada: " +
                         String.valueOf(Arrays.toString(provinsi_alamat) +"lalala"));
-                ArrayAdapter<String> adapter_provinsi = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, provinsi_alamat);
+                ArrayAdapter<String> adapter_provinsi = get_spinner_adapter(provinsi_alamat);;
                 provinsi.setAdapter(adapter_provinsi);
-                ArrayAdapter<String> adapter_kota = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, kota_alamat);
+                ArrayAdapter<String> adapter_kota = get_spinner_adapter(kota_alamat);
                 kota.setAdapter(adapter_kota);
 
             } catch (IOException e) {

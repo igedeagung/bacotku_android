@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="50sp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,10 +44,11 @@
                 android:id="@+id/judul_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="15sp"
                 android:text="TextView"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15sp"
                 android:layout_marginBottom="15sp"
-                android:text="Tanggal Kejadian"
+                android:text="Tanggal Kejadian :"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold" />
 
@@ -97,7 +99,8 @@
             android:layout_height="match_parent"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="16dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="10sp">
 
             <TextView
                 android:id="@+id/textView7"
@@ -105,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15sp"
                 android:layout_marginBottom="15sp"
-                android:text="Lokasi"
+                android:text="Lokasi :"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold" />
 
@@ -120,9 +123,9 @@
                 android:paddingTop="10dp"
                 android:paddingRight="60dp"
                 android:paddingBottom="10dp"
-                android:textStyle="bold"
                 android:text="Location"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
