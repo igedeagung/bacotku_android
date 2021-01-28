@@ -30,7 +30,6 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private EditText edittext;
-    private Calendar myCalendar;
     private BacotAdapter bAdapter;
     private ListView lv;
 

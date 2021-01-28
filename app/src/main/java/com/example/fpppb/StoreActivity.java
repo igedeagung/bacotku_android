@@ -78,8 +78,7 @@ public class StoreActivity extends AppCompatActivity {
     private static final int kodekamera = 222;
     private File file;
     private ImageButton upload;
-    private Button tanggal, submit;
-    private Calendar myCalendar;
+    private Button submit;
     private Spinner kota, provinsi, lokasi;
     private ApiInterface mApiInterface;
     private EditText judul, isi;
@@ -98,7 +97,6 @@ public class StoreActivity extends AppCompatActivity {
         ll = new lokasiListener();
 
         upload=findViewById(R.id.uplaod);
-        tanggal=findViewById(R.id.tanggal);
         submit=findViewById(R.id.submit);
         judul=findViewById(R.id.store_judul);
         isi=findViewById(R.id.store_isi);
@@ -107,10 +105,8 @@ public class StoreActivity extends AppCompatActivity {
         provinsi=findViewById(R.id.store_provinsi);
         bar=findViewById(R.id.progressBar2);
 
-        myCalendar = Calendar.getInstance();
 
         upload.setOnClickListener(operasi);
-        tanggal.setOnClickListener(operasi);
         submit.setOnClickListener(operasi);
 
         String[] lokasi_list=new String[]{"Lokasi Manual", "Lokasi Otomatis"};
@@ -210,24 +206,9 @@ public class StoreActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.uplaod:upload();break;
-                case R.id.tanggal:pilih_tanggal();break;
                 case R.id.submit:submit();break;
             }
         }
-    };
-
-    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-            // TODO Auto-generated method stub
-            myCalendar.set(Calendar.YEAR, year);
-            myCalendar.set(Calendar.MONTH, monthOfYear);
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel();
-        }
-
     };
 
     private void upload(){
@@ -237,11 +218,14 @@ public class StoreActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {   super.onActivityResult(requestCode, resultCode, data);
+    {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK)
-        {   switch (requestCode) {
-            case (kodekamera):prosesKamera(data);break;
-        }
+        {
+            switch (requestCode) {
+                case (kodekamera):prosesKamera(data);
+                break;
+            }
         }
     }
 
@@ -268,26 +252,20 @@ public class StoreActivity extends AppCompatActivity {
             bmp.compress(Bitmap.CompressFormat.PNG, 100, outStream);
             outStream.flush();
             outStream.close();
+            Log.e("loc Get", "ada: " +
+                    String.valueOf("lalala"));
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e("loc Get", "ada: " +
+                    String.valueOf((e)));
             return null;
         }
 
         return file;
     }
 
-    private void pilih_tanggal(){
-        new DatePickerDialog(StoreActivity.this, date, myCalendar
-                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-    }
 
-    private void updateLabel() {
-        String myFormat = "yyyy-MM-dd"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-        tanggal.setText(sdf.format(myCalendar.getTime()));
-    }
 
     private void gantiKota(String provinsis){
         Call<DetailRegencies> get=mApiInterface.detailRegencies(provinsis);
@@ -430,24 +408,15 @@ public class StoreActivity extends AppCompatActivity {
             adb.show();
             return;
         }
-        if(tanggal.getText().toString().equals("Pilih Tanggal Kejadian") || tanggal.getText().toString().equals("PILIH TANGGAL KEJADIANn")){
-            AlertDialog.Builder adb=new AlertDialog.Builder(StoreActivity.this);
-            adb.setTitle("Error");
-            adb.setMessage("Pilih Tanggal ! ");
-            adb.setPositiveButton("Ok", null);
-            adb.show();
-            return;
-        }
 
         MultipartBody.Part filePart = MultipartBody.Part.createFormData("photo", "temp.png", RequestBody.create(MediaType.parse("image/*"), file));
 
-        RequestBody tanggall = RequestBody.create(MediaType.parse("text/plain"), tanggal.getText().toString());
         RequestBody judull = RequestBody.create(MediaType.parse("text/plain"), judul.getText().toString());
         RequestBody isii = RequestBody.create(MediaType.parse("text/plain"), isi.getText().toString());
         RequestBody kotaa = RequestBody.create(MediaType.parse("text/plain"), kota.getSelectedItem().toString());
         RequestBody provinsii = RequestBody.create(MediaType.parse("text/plain"), provinsi.getSelectedItem().toString());
 
-        Call<PostBacot> post=mApiInterface.postBacot(filePart, tanggall, judull,isii , kotaa, provinsii);
+        Call<PostBacot> post=mApiInterface.postBacot(filePart, judull, isii , kotaa, provinsii);
         post.enqueue(new Callback<PostBacot>() {
             @Override
             public void onResponse(Call<PostBacot> call, Response<PostBacot> response) {

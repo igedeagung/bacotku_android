@@ -44,9 +44,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
-                android:text="Bacotan yang telah ditambahkan\nsudah tersimpan"
-                android:textAlignment="center"
                 android:lines="2"
+                android:text="Batik yang telah ditambahkan\nsudah tersimpan"
+                android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
         </LinearLayout>

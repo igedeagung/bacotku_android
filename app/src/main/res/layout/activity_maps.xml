@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="140dp"
-            android:text="Lokasi Sekarang : "
+            android:text="Lokasi Batik : "
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold" />

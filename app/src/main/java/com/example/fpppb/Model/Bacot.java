@@ -29,10 +29,6 @@ public class Bacot {
         return namafile;
     }
 
-    public String getTanggal() {
-        return tanggal;
-    }
-
     public String getJudul() {
         return judul;
     }

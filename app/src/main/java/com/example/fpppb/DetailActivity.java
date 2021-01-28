@@ -36,7 +36,6 @@ public class DetailActivity extends AppCompatActivity {
         ImageView gambar=findViewById(R.id.gambar_detail);
         TextView judul=findViewById(R.id.judul_detail);
         TextView isi=findViewById(R.id.isi_detail);
-        TextView tgl=findViewById(R.id.tgl_kjd);
         Button lokasi=findViewById(R.id.lokasi);
 
         ApiInterface mApiInterface= ApiClient.getClient().create(ApiInterface.class);
@@ -48,7 +47,6 @@ public class DetailActivity extends AppCompatActivity {
                 Bacot isibacot=response.body().getData();
                 judul.setText(isibacot.getJudul());
                 isi.setText(isibacot.getIsi());
-                tgl.setText(isibacot.getTanggal());
                 lokasi.setText(isibacot.getKota()+", "+isibacot.getProvinsi());
 
                 byte[] imagee= Base64.decode(isibacot.getImage(), Base64.DEFAULT);;

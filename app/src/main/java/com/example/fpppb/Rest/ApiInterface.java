@@ -22,7 +22,7 @@ public interface ApiInterface {
 
     @Multipart
     @POST("store")
-    Call<PostBacot> postBacot(@Part MultipartBody.Part photo,@Part("tanggal") RequestBody tanggal,  @Part("judul") RequestBody judul, @Part("isi") RequestBody isi, @Part("kota") RequestBody kota,@Part("provinsi") RequestBody provinsi );
+    Call<PostBacot> postBacot(@Part MultipartBody.Part photo, @Part("judul") RequestBody judul, @Part("isi") RequestBody isi, @Part("kota") RequestBody kota,@Part("provinsi") RequestBody provinsi );
 
     @GET("detail/{id}")
     Call<DetailBacot> detailBacot(@Path(value = "id") int id);

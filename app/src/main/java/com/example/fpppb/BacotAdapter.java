@@ -38,7 +38,6 @@ public class BacotAdapter extends ArrayAdapter<Bacot> {
         }
         final TextView tjudul = (TextView) ConvertView.findViewById(R.id.judul);
         final TextView tisi = (TextView) ConvertView.findViewById(R.id.isi);
-        final TextView ttgl = (TextView) ConvertView.findViewById(R.id.tgl);
         final ImageView gambar = (ImageView) ConvertView.findViewById(R.id.imageView);
 
         Button detail = ConvertView.findViewById(R.id.detail);
@@ -54,7 +53,6 @@ public class BacotAdapter extends ArrayAdapter<Bacot> {
 
         tjudul.setText(dtbacot.getJudul());
         tisi.setText(dtbacot.getIsi());
-        ttgl.setText(dtbacot.getCreated_at_date());
 
         byte[] imagee = Base64.decode(dtbacot.getImage(), Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(imagee, 0, imagee.length);
